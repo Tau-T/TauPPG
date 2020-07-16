@@ -8,4 +8,41 @@
 #ifndef Header_h
 #define Header_h
 
+//Custon external libraries
+#include "AD524X.h"
+
+//Arduino Libraries
+#include <Arduino.h>
+
+/*Functions we need
+turn LED on and off
+control brightness of LED
+control gain of transimpedance amplifier (TIA)
+control gain of bandpass
+*/
+class TauPPG
+{
+    private:
+        AD524X ad5242; //potentiometer to control gain of TIA and Bandpass
+
+        uint8_t R_ledCurrent;
+        uint8_t R_tiaGain;
+        uint8_t R_bpfGain;
+
+    public:
+
+        TauPPG();
+    void turnLEDON();
+    void turnLEDOff();
+    void setLEDCurrent();
+    uint8_t getLEDCurrent() const;
+
+    void setTIAGain();
+    uint8_t getTIAGain() const;
+
+    void setPPGGain();
+    uint8_t getPBFGain() const;
+
+}
+
 #endif /*Header_h*/
