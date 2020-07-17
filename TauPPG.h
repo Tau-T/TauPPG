@@ -5,8 +5,8 @@
 //Created by Matt Tao on 7.16.2020
 //
 
-#ifndef Header_h
-#define Header_h
+#ifndef TauPPG_h
+#define TauPPG_h
 
 //Custon external libraries
 #include "AD524X.h"
@@ -20,6 +20,9 @@ control brightness of LED
 control gain of transimpedance amplifier (TIA)
 control gain of bandpass
 */
+
+
+
 class TauPPG
 {
     private:
@@ -43,6 +46,8 @@ class TauPPG
     void setPPGGain();
     uint8_t getPBFGain() const;
 
-}
+    uint16_T GETtia();
+    uint16_T GETbpf();
+};
 
-#endif /*Header_h*/
+#endif TauPPG_h
