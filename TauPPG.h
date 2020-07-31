@@ -27,27 +27,30 @@ class TauPPG
 {
     private:
         AD524X ad5242; //potentiometer to control gain of TIA and Bandpass
-
+    
         uint8_t R_ledCurrent;
         uint8_t R_tiaGain;
         uint8_t R_bpfGain;
 
+        bool ledState; //true = on, false = off
     public:
 
         TauPPG();
-    void turnLEDON();
-    void turnLEDOff();
-    void setLEDCurrent();
-    uint8_t getLEDCurrent() const;
-
-    void setTIAGain();
-    uint8_t getTIAGain() const;
-
-    void setPPGGain();
-    uint8_t getPBFGain() const;
-
-    uint16_T GETtia();
-    uint16_T GETbpf();
+        //Control LED
+        void turnLEDON() const;
+        void turnLEDOff() const;
+        bool getLEDStatus() const;
+        void setLEDCurrent(uint8_t val);
+        uint8_t getLEDCurrent() const;
+        //Amplifier gain control
+        void setTIAGain(uint8_t gain);
+        uint8_t getTIAGain() const;
+        //Bandpass filter amplifier gain control
+        void setPPGGain(uint8_t gain);
+        uint8_t getPPGGain() const;
+    //Read voltage of PPG circuit
+    uint16_t getTIA() const;
+    uint16_t getPPG() const;
 };
 
 #endif TauPPG_h
