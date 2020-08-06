@@ -39,20 +39,26 @@ class TauPPG
 
         void begin();
         //Control LED
-        void turnLEDON() const;
-        void turnLEDOff() const;
+        void turnLEDON();
+        void turnLEDOff();
         bool getLEDStatus() const;
         void setLEDCurrent(uint8_t val);
         uint8_t getLEDCurrent() const;
+
+
         //Amplifier gain control
         void setTIAGain(uint8_t gain);
         uint8_t getTIAGain() const;
+
+
         //Bandpass filter amplifier gain control
         void setPPGGain(uint8_t gain);
         uint8_t getPPGGain() const;
-    //Read voltage of PPG circuit
-    uint16_t getTIA() const;
-    uint16_t getPPG() const;
+
+
+        //Read voltage of PPG circuit
+        uint16_t getTIA() const;
+        uint16_t getPPG() const;
 };
 
 #endif TauPPG_h

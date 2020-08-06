@@ -38,27 +38,23 @@ void TauPPG::begin()
     turnLEDOff();
     analogReadResolution(12); //0 and 4095 = 12 bits
 
-    setLEDcurrent(63); //smallest LED current by default
+    setLEDCurrent(63); //smallest LED current by default
 
     //AD5242 digital potentiometer
     //Controls the gain of the photometric front-end
     ad5242 = AD524X(0x2c);
 }
 
-bool getLEDStatus() const
-{
-    return ledState;
-}
 //Turns on LED by writing LOW to pin LED is drivin using NPN bipolar 
 // junction transistor (BFT)
-void TauPPG::turnLEDON() const
+void TauPPG::turnLEDON()
 {
     digitalWrite(ledPin, HIGH);
     ledState = true;
 }
 //Turns off LED by writing LOW to pin LED is drivin using NPN bipolar 
 // junction transistor (BFT)
-void TauPPG::turnLEDOff() const
+void TauPPG::turnLEDOff()
 {
     digitalWrite(ledPin, LOW);
     ledState = false;
@@ -104,24 +100,24 @@ uint8_t TauPPG::getLEDCurrent() const
 void TauPPG::setTIAGain(uint8_t gain)
 {
     //
-    ad5242.write(0,gain)
+    ad5242.write(0,gain);
     R_tiaGain = gain;
 }
 //Returns TIA gain setting of digital potentiometer
-uint8_t TauPPG::getTIAGain() const;
+uint8_t TauPPG::getTIAGain() const
 {
     return(R_tiaGain);
 }
 //finished
 //Reads voltage of TIA
-uint8_t TauPPG::getTIA() const;
+uint16_t TauPPG::getTIA() const
 { 
     return analogRead(tiaPin);
 }
 //Returns gain setting of PPG bandpass filter
-uint8_t TauPPG::getPPGGain() const;
+uint8_t TauPPG::getPPGGain() const
 {
-    return(R_ppgGain);
+    return(R_bpfGain);
 }
 
 //void TauPPG::setPPGGain(uint8_t gain)
@@ -130,14 +126,14 @@ uint8_t TauPPG::getPPGGain() const;
 //Sets gain of digital potentiometer connected to transimpedance amplifer. 
 //As gain increases, resistance of potentiometer increases, gain of bandpass
 //increases, output voltage increases
-void TauPPG::setPPGGain()
+void TauPPG::setPPGGain(uint8_t gain)
 {
-    ad5242.write(1,gain)
-    R_ppgGain = gain;
+    ad5242.write(1,gain);
+    R_bpfGain = gain;
 }
 //finished 
 //Reads voltage of transimpedance amplifier
-uint8_t TauPPG::getPPG() const;
+uint16_t TauPPG::getPPG() const
 {
     return analogRead(ppgPin);
 }
