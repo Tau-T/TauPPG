@@ -36,6 +36,8 @@ class TauPPG
     public:
 
         TauPPG();
+
+        void begin();
         //Control LED
         void turnLEDON() const;
         void turnLEDOff() const;

@@ -1,5 +1,5 @@
 //
-// TauPPG.hpp
+//TauPPG.hpp
 //
 //
 //Created by Matt Tao 
